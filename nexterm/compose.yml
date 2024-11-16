@@ -1,0 +1,19 @@
+services:
+  nexterm:
+    ports:
+      - "6989:6989"
+    restart: unless-stopped
+    volumes:
+      - /home/eyes/docker/nexterm:/app/data
+    image: germannewsmaker/nexterm:1.0.1-OPEN-PREVIEW
+    container_name: nextrem
+    networks:
+      - net
+
+volumes:
+  nexterm:
+
+networks:
+  net:
+    name: net
+    external: true

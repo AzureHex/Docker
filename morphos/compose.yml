@@ -1,0 +1,16 @@
+services:
+  morphos-server:
+    ports:
+      - 8087:8080
+    volumes:
+      - /home/eyes/docker/morphos:/tmp
+    image: ghcr.io/danvergara/morphos-server:latest
+    container_name: morphos
+    restart: unless-stopped
+    networks:
+      - net
+
+networks:
+  net:
+    external: true
+    name: net

@@ -1,0 +1,24 @@
+services:
+  ariang:
+    image: hurlenko/aria2-ariang
+    container_name: ariang
+    ports:
+      - 8084:8080
+    volumes:
+      - /home/eyes/docker/ariang:/aria2/conf
+      - /media/downloads:/aria2/data
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - RPC_SECRET=SECRET
+      - EMBED_RPC_SECRET=""
+      - ARIA2RPCPORT=8084
+      - FIX_DATA_VOLUME_PERMISSIONS=true
+    restart: unless-stopped
+    networks:
+      - net
+
+networks:
+  net:
+    external: true
+    name: net

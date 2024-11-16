@@ -1,0 +1,27 @@
+services:
+  dsm:
+    container_name: synology
+    image: vdsm/virtual-dsm:latest
+    environment:
+      CPU_CORES: "1"
+      RAM_SIZE: "2G"
+      DISK_SIZE: "20G"
+      #      DISK2_SIZE: "128G"
+      DISK_FMT: "qcow2"
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 5000:5000
+    volumes:
+      - /home/eyes/docker/synology/sda:/storage
+    #      - /mnt/docker/synology/sdb:/storage2
+    restart: unless-stopped
+    networks:
+      - net
+
+networks:
+  net:
+    external: true
+    name: net

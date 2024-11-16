@@ -1,0 +1,15 @@
+services:
+  ubuntu_container:
+    image: ubuntu:latest
+    container_name: ubuntu
+    networks:
+      macvlan:
+        ipv4_address: 192.168.29.120
+    tty: true
+    volumes:
+      - /home/eyes/docker/ubuntu:/:rw
+
+networks:
+  macvlan:
+    external: true
+    name: macvlan

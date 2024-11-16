@@ -1,0 +1,17 @@
+services:
+  portainer-ce:
+    ports:
+      - 9000:9000
+    container_name: portainer
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/eyes/docker/portainer:/data
+    image: portainer/portainer-ce:lts
+    networks:
+      - net
+
+networks:
+  net:
+    name: net

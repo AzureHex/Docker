@@ -1,0 +1,15 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    network_mode: "host"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - /home/eyes/docker/jellyfin/config:/config
+      - /home/eyes/docker/jellyfin/cache:/cache
+      - /media/movies:/movies
+      - /media/shows:/shows
+    restart: unless-stopped

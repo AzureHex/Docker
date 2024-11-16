@@ -1,0 +1,21 @@
+services:
+  dash:
+    image: mauricenino/dashdot:nvidia
+    container_name: "dashdot"
+    restart: unless-stopped
+    privileged: true
+
+    ports:
+      - "8093:3001"
+    volumes:
+      - /:/mnt/host:ro
+    environment:
+      DASHDOT_WIDGET_LIST: "os,cpu,storage,ram,network"
+      DASHDOT_ENABLE_CPU_TEMPS: "true"
+    networks:
+      - net
+
+networks:
+  net:
+    external: true
+    name: net

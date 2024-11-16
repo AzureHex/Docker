@@ -1,0 +1,17 @@
+services:
+  swingmusic:
+    image: ghcr.io/swingmx/swingmusic:latest
+    container_name: swingmusic
+    volumes:
+      - /home/eyes/docker/swingmusic/config:/config
+      - /media/sounds:/music
+    ports:
+      - "1970:1970"
+    restart: unless-stopped
+    networks:
+      - net
+
+networks:
+  net:
+    external: true
+    name: net

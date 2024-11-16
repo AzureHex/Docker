@@ -1,0 +1,22 @@
+services:
+  stirling-pdf:
+    image: frooodle/s-pdf:latest
+    container_name: stirling-pdf
+    ports:
+      - "8196:8080"
+    volumes:
+      - /home/eyes/docker/stirling-pdf/trainingData:/usr/share/tessdata
+      - /home/eyes/docker/stirling-pdf/extraConfigs:/configs
+    #      - ./customFiles:/customFiles/
+    #      - ./logs:/logs/
+    environment:
+      - DOCKER_ENABLE_SECURITY=false
+      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
+      - LANGS=en_GB
+    networks:
+      - net
+
+networks:
+  net:
+    external: true
+    name: net
